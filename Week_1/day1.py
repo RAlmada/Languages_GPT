@@ -1,31 +1,31 @@
 # Exercise 1
 
 def check_score_e1(score):
-	winning_score = 79
+	winning_score = 79s
+	return score >= winning_score
 
-	if score >= winning_score:
-		print("E1: You're a winner!")
-
-
-check_score_e1(100)
+print("E1: You're a winner") if check_score_e1(100) else print("E1: You lose.")
 
 
 # Exercise 2
 
 def check_score_e2(score):
+	result = "not a"
 	pro_win = 92
 	int_win = 86
 	beg_win = 76
 
 	if score >= pro_win:
-		print("E2: You're a PRO Winner!")
+		result = "a PRO"
 	elif score >= int_win:
-		print("E2: You're a INTERMEDIATE Winner!")
+		result = "an INTERMEDIATE"
 	elif score >= beg_win:
-		print("E2: You're a BEGINNER Winner!")
+		result = "a BEGINNER"
+
+	return result
 
 
-check_score_e2(88)
+print(f"E2: You're {check_score_e2(88)} winner!")
 
 
 # Exercise 3
@@ -56,7 +56,7 @@ def play_game_e4():
 			print(f"\nYou guessed: {guess}")
 
 			if 1 <= guess <= 10:
-				answer = random.randrange(1,10)
+				answer = random.randint(1, 10)
 
 				if guess == answer:
 					print("You guessed correctly!")
@@ -75,8 +75,7 @@ play_game_e4()
 # Exercise 5
 
 def print_leaderboard(scores):
-	sorted_scores = scores.copy()
-	sorted_scores.sort(reverse=True)
+	sorted_scores = sorted(scores, reverse=True)
 
 	print("E5: Leaderboard")
 
