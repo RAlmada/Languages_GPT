@@ -1,4 +1,6 @@
 #include <iostream>
+#include <limits>
+#include <random>
 
 using namespace std;
 
@@ -68,6 +70,106 @@ void printNumbersUsingDoWhile() {
 	cout << endl;
 }
 
+void simulateATM() {
+	bool active = true;
+	double balance = 1000.0; // Initial balance
+
+	while (active) {
+		int option;
+		cout << "ATM Menu:" << endl;
+		cout << "1. Check Balance" << endl;
+		cout << "2. Withdraw Money" << endl;
+		cout << "3. Deposit Money" << endl;
+		cout << "4. Exit" << endl;
+		cout << "Select an option: ";
+		cin >> option;
+
+		if (cin.fail()) {
+			cin.clear(); // Clear the error flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+			cout << "Invalid input! Please enter a valid option." << endl;
+			cout << endl;
+			continue;
+		}
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		switch (option) {
+			case 1:
+				cout << "Your balance is: $" << balance << endl;
+				break;
+
+			case 2:
+				double withdrawAmount;
+				cout << "Enter amount to withdraw: $";
+				cin >> withdrawAmount;
+
+				if (withdrawAmount > balance) {
+					cout << "Insufficient funds!" << endl;
+				} else if (withdrawAmount <= 0) {
+					cout << "Invalid amount!" << endl;
+				} else {
+					balance -= withdrawAmount;
+					cout << "Withdrawal successful! New balance: $" << balance << endl;
+				}
+
+				break;
+			
+			case 3:
+				double depositAmount;
+				cout << "Enter amount to deposit: $";
+				cin >> depositAmount;
+
+				if (depositAmount <= 0) {
+					cout << "Invalid amount!" << endl;
+				} else {
+					balance += depositAmount;
+					cout << "Deposit successful! New balance: $" << balance << endl;
+				}
+
+				break;
+
+			case 4:
+				active = false;
+				cout << "Exiting ATM. Thank you!" << endl;
+				break;
+		}
+
+		cout << endl;
+	}
+}
+
+void guessingGame() {
+	random_device rd;
+	mt19937 gen(rd());
+
+	uniform_int_distribution<int> distrib(1, 100);
+	int answer = distrib(gen);
+	int guess;
+
+	do {
+		cout << "E5. Guess the number (1-100): ";
+		cin >> guess;
+
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input! Please enter a number." << endl;
+			continue;
+		}
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		if (guess < answer) {
+			cout << "Too low! Try again." << endl;
+		} else if (guess > answer) {
+			cout << "Too high! Try again." << endl;
+		} else {
+			cout << "Congratulations! You guessed the number!" << endl;
+		}
+	} while (guess != answer);
+}
+
 int main() {
 	// E1. Check if a number is positive, negative or zero
 	checkSignE1(-100);
@@ -98,5 +200,10 @@ int main() {
 	cout << endl;
 
 	// E4. Simulate a simple ATM withdrawal system with conditionals and loops.
-	
+	simulateATM();
+
+	cout << endl;
+
+	// E5. Implement a number guessing game where the user guesses a random number (1-100)
+	guessingGame();
 }
