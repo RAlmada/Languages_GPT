@@ -1,2 +1,3 @@
-*.exe
 *.js
+*.exe
+*.pdb
