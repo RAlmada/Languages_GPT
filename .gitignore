@@ -1,4 +1,13 @@
 # Compiled file formats
+# Typescript
 *.js
+
+# C++, Rust, Go, Swift
 *.exe
+
+# Rust
 *.pdb
+
+# Swift
+*.exp
+*.lib
