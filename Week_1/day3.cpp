@@ -1,3 +1,6 @@
+// +build ignore
+// This file is to be ignored by the Go build system.
+
 #include <iostream>
 #include <limits>
 #include <random>
