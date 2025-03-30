@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func main() {
 	// Exercise 1
@@ -28,6 +31,11 @@ func main() {
 
 	// Exercise 4
 	simulateATM()
+
+	fmt.Println()
+
+	// Exercise 5
+	numberGuess()
 }
 
 func checkNumberE1(value int) {
@@ -144,5 +152,30 @@ ATM_LOOP:
 		}
 
 		fmt.Println()
+	}
+}
+
+func numberGuess() {
+	answer := rand.Intn(100) + 1
+	attempts := 10
+
+	for attempts > 0 {
+		var guess int
+		fmt.Printf("Guess the number (1-100). You have %d attempts left: ", attempts)
+		fmt.Scan(&guess)
+
+		switch {
+		case guess < 1 || guess > 100:
+			fmt.Println("Please enter a number between 1 and 100.")
+		case guess < answer:
+			fmt.Println("Too Low!")
+		case guess > answer:
+			fmt.Println("Too High!")
+		default:
+			fmt.Println("Congratulations! You've guessed the number!")
+			return
+		}
+
+		attempts--
 	}
 }
