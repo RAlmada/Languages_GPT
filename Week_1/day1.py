@@ -1,7 +1,7 @@
 # Exercise 1
 
 def check_score_e1(score):
-	winning_score = 79s
+	winning_score = 79
 	return score >= winning_score
 
 print("E1: You're a winner") if check_score_e1(100) else print("E1: You lose.")
